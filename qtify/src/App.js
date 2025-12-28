@@ -1,15 +1,16 @@
-import React from 'react';
+import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 
 function App() {
-  return (
-    <div className="App">
-      <Navbar searchData={[]} />
-      <Hero />
-    </div>
-  );
+    return (
+        <div className="App">
+          <Navbar searchData={[]} />
+          <Hero />
+        </div>
+      );
 }
 
 export default App;
