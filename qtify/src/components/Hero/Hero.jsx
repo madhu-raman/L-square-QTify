@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Hero.module.css";
-import HeroImage from "../../assets/hero_headphone.png";
+import HeroImage from "../../assets/hero_headphones.png";
 
 function Hero() {
   return (
