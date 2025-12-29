@@ -1,19 +1,18 @@
 import React from "react";
 import styles from "./Hero.module.css";
+import HeroImage from "../../assets/vibrating-headphone.png";
 
 function Hero() {
   return (
     <div className={styles.hero}>
       <div className={styles.heroContent}>
-        <h1>100 Thousand Songs, ad-free</h1>
-        <h1>Over thousands podcast episodes</h1>
-      </div>
-      <div className={styles.heroImage}>
-        <img
-          src={require("../../assets/hero_headphones.png")}
-          width={212}
-          alt="headphones"
-        />
+        <div className={styles.heroText}>
+          <h2>100 Thousand Songs, ad-free</h2>
+          <p>Over thousands podcast episodes</p>
+        </div>
+        <div className={styles.heroImage}>
+          <img src={HeroImage} alt="Headphones" />
+        </div>
       </div>
     </div>
   );

@@ -65,13 +65,14 @@ function Search({ searchData, placeholder }) {
         }}
       >
         <div {...getRootProps()}>
-          <input
-            name="album"
-            className={styles.search}
-            placeholder={placeholder || "Search"}
-            required
-            {...getInputProps()}
-          />
+            <input
+                name="album"
+                className={styles.search}
+                placeholder={placeholder || "Search"}
+                required
+                data-testid="search-input"
+                {...getInputProps()}
+            />
         </div>
         <div>
           <button className={styles.searchButton} type="submit">

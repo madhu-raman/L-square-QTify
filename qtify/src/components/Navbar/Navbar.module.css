@@ -2,7 +2,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 32px;
-    background-color: #34C94B;
+    background-color: var(--color-primary);
     height: 74px;
+    padding: 0 32px;
+  }
+
+  .navbar > * {
+    flex-shrink: 0;
   }

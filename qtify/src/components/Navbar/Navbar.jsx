@@ -7,15 +7,15 @@ import styles from './Navbar.module.css';
 
 function Navbar({ searchData = [] }) {
   return (
-    <nav className={styles.navbar}>
-      <Link to="/">
+    <nav className={styles.navbar} data-testid="navbar">
+      <Link to="/" data-testid="navbar-logo">
         <Logo />
       </Link>
       <Search
         placeholder="Search a album of your choice"
         searchData={searchData}
       />
-      <Button>Give Feedback</Button>
+      <Button data-testid="navbar-button">Give Feedback</Button>
     </nav>
   );
 }

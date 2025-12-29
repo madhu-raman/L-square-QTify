@@ -1,17 +1,10 @@
 .logoContainer {
     display: flex;
     align-items: center;
-    margin-left: 0;
+    margin-right: 20px;
   }
 
   .logo {
     height: 34px;
     width: auto;
-  }
-
-  .logoText {
-    color: var(--color-primary);
-    font-family: 'Poppins', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
   }
