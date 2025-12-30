@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import Section from './components/Section/Section';
@@ -43,32 +44,34 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Navbar />
-      <Hero />
+    <BrowserRouter>
+      <div className="App">
+        <Navbar />
+        <Hero />
 
-      {/* Top Albums Section */}
-      <Section
-        title="Top Albums"
-        data={topAlbums}
-        type="album"
-      />
+        {/* Top Albums Section */}
+        <Section
+          title="Top Albums"
+          data={topAlbums}
+          type="album"
+        />
 
-      {/* New Albums Section */}
-      <Section
-        title="New Albums"
-        data={newAlbums}
-        type="album"
-      />
+        {/* New Albums Section */}
+        <Section
+          title="New Albums"
+          data={newAlbums}
+          type="album"
+        />
 
-      {/* Songs Section with Tabs */}
-      <Section
-        title="Songs"
-        data={songs}
-        type="song"
-        filterData={genres}
-      />
-    </div>
+        {/* Songs Section with Tabs */}
+        <Section
+          title="Songs"
+          data={songs}
+          type="song"
+          filterData={genres}
+        />
+      </div>
+    </BrowserRouter>
   );
 }
 
