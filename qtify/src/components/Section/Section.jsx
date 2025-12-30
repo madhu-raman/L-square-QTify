@@ -5,7 +5,7 @@ import styles from './Section.module.css';
 const Section = ({ title, apiEndpoint }) => {
   const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false); // Changed to false - show cards by default
 
   useEffect(() => {
     fetchAlbums();
