@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -6,30 +6,36 @@ import 'swiper/css/navigation';
 import styles from './Carousel.module.css';
 
 const Carousel = ({ data, renderItem }) => {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+
   return (
     <div className={styles.carouselContainer}>
       <Swiper
         modules={[Navigation]}
         spaceBetween={30}
         slidesPerView={7}
-        navigation
+        navigation={{
+          prevEl: prevRef.current,
+          nextEl: nextRef.current,
+        }}
+        onBeforeInit={(swiper) => {
+          swiper.params.navigation.prevEl = prevRef.current;
+          swiper.params.navigation.nextEl = nextRef.current;
+        }}
         breakpoints={{
-          // Mobile
           320: {
             slidesPerView: 2,
             spaceBetween: 10
           },
-          // Tablet
           640: {
             slidesPerView: 3,
             spaceBetween: 20
           },
-          // Small Desktop
           1024: {
             slidesPerView: 5,
             spaceBetween: 25
           },
-          // Large Desktop
           1440: {
             slidesPerView: 7,
             spaceBetween: 30
@@ -42,6 +48,22 @@ const Carousel = ({ data, renderItem }) => {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {/* Custom Navigation Buttons */}
+      <button
+        ref={prevRef}
+        className={styles.navButton}
+        aria-label="Previous"
+      >
+        ‹
+      </button>
+      <button
+        ref={nextRef}
+        className={styles.navButton}
+        aria-label="Next"
+      >
+        ›
+      </button>
     </div>
   );
 };

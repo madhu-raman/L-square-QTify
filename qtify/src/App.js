@@ -16,13 +16,16 @@ function App() {
         <Section
           title="Top Albums"
           apiEndpoint="https://qtify-backend.labs.crio.do/albums/top"
+          type="albums"
         />
 
         {/* New Albums Section */}
         <Section
           title="New Albums"
           apiEndpoint="https://qtify-backend.labs.crio.do/albums/new"
+          type="albums"
         />
+
       </div>
     </Router>
   );

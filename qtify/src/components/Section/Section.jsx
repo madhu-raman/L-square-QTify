@@ -6,20 +6,27 @@ import styles from './Section.module.css';
 const Section = ({ title, apiEndpoint, type = 'albums' }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showCarousel, setShowCarousel] = useState(true); // true = show carousel initially
+  const [showCarousel, setShowCarousel] = useState(true);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [apiEndpoint]);
 
   const fetchData = async () => {
     try {
+      setLoading(true);
       const response = await fetch(apiEndpoint);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const result = await response.json();
-      setData(result);
-      setLoading(false);
+      setData(Array.isArray(result) ? result : []);
     } catch (error) {
       console.error('Error fetching data:', error);
+      setData([]);
+    } finally {
       setLoading(false);
     }
   };
@@ -28,7 +35,6 @@ const Section = ({ title, apiEndpoint, type = 'albums' }) => {
     setShowCarousel(!showCarousel);
   };
 
-  // Function to render the appropriate card type
   const renderCard = (item) => {
     return (
       <Card
@@ -45,7 +51,6 @@ const Section = ({ title, apiEndpoint, type = 'albums' }) => {
 
   return (
     <div className={styles.section}>
-      {/* Section Header */}
       <div className={styles.header}>
         <h2 className={styles.title}>{title}</h2>
         <button
@@ -56,12 +61,9 @@ const Section = ({ title, apiEndpoint, type = 'albums' }) => {
         </button>
       </div>
 
-      {/* Conditional Rendering: Grid OR Carousel */}
       {showCarousel ? (
-        // Show Carousel
         <Carousel data={data} renderItem={renderCard} />
       ) : (
-        // Show Grid
         <div className={styles.grid}>
           {data.map((item) => (
             <div key={item.id}>
