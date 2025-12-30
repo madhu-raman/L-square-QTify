@@ -1,41 +1,46 @@
 import React from 'react';
-import { Chip } from '@mui/material';
 import styles from './Card.module.css';
+import { Chip } from '@mui/material';
 
-const Card = ({ image, follows, title }) => {
+const Card = ({ data, type }) => {
+  const { image, title, follows, likes, songs } = data;
+
+  // Determine chip label and value based on type
+  const getChipInfo = () => {
+    if (type === 'song') {
+      return { label: 'Likes', value: likes };
+    }
+    return { label: 'Follows', value: follows };
+  };
+
+  const chipInfo = getChipInfo();
+
   return (
-    <div className={styles.cardWrapper}>
-      <div className={styles.card}>
-        {/* Image Section */}
-        <div className={styles.imageContainer}>
-          <img
-            src={image}
-            alt={title}
-            className={styles.image}
-          />
-          {/* MUI Chip positioned at top-left of image */}
-          <div className={styles.chipContainer}>
+    <div className={styles.card}>
+      <div className={styles.cardWrapper}>
+        <div className={styles.cardImage}>
+          <img src={image} alt={title} />
+          <div className={styles.cardChip}>
             <Chip
-              label={`${follows} Follows`}
+              label={`${chipInfo.value} ${chipInfo.label}`}
               size="small"
+              className={styles.chip}
               sx={{
                 backgroundColor: '#121212',
                 color: '#FFFFFF',
                 fontSize: '10px',
                 height: '23px',
                 borderRadius: '10px',
-                fontFamily: 'Poppins',
-                '& .MuiChip-label': {
-                  padding: '0 8px',
-                }
+                fontWeight: 400
               }}
             />
           </div>
         </div>
-
-        {/* Bottom Section */}
-        <div className={styles.cardBottom}>
-          <p className={styles.title}>{title}</p>
+        <div className={styles.cardContent}>
+          <p className={styles.cardTitle}>{title}</p>
+          {type !== 'song' && songs && (
+            <p className={styles.cardSongs}>{songs.length} songs</p>
+          )}
         </div>
       </div>
     </div>

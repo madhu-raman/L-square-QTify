@@ -1,59 +1,59 @@
 .section {
-    padding: 32px 48px;
-    background-color: var(--color-black);
+    padding: 32px 0;
   }
 
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    padding: 0 32px;
   }
 
   .title {
-    color: var(--color-white);
     font-size: 20px;
     font-weight: 600;
+    color: #FFFFFF;
     margin: 0;
-    font-family: 'Poppins', sans-serif;
   }
 
-  .collapseButton {
-    background-color: transparent;
-    color: var(--color-primary);
-    border: none;
-    font-size: 16px;
+  .toggleText {
+    font-size: 20px;
     font-weight: 600;
+    color: #34C94B;
     cursor: pointer;
-    padding: 5px 10px;
-    font-family: 'Poppins', sans-serif;
-    transition: opacity 0.2s;
+    margin: 0;
+    transition: opacity 0.3s ease;
   }
 
-  .collapseButton:hover {
+  .toggleText:hover {
     opacity: 0.8;
+  }
+
+  .tabsWrapper {
+    padding: 0 32px;
+    margin-bottom: 16px;
   }
 
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(159px, 1fr));
-    gap: 20px;
-    justify-items: center;
-  }
-
-  .loading {
-    padding: 20px;
-    color: var(--color-white);
-    text-align: center;
-    font-size: 16px;
+    gap: 24px;
+    padding: 0 32px;
   }
 
   @media (max-width: 768px) {
-    .section {
-      padding: 20px;
+    .header {
+      padding: 0 16px;
+    }
+
+    .tabsWrapper {
+      padding: 0 16px;
     }
 
     .grid {
-      gap: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+      padding: 0 16px;
     }
   }
