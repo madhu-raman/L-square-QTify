@@ -49,7 +49,7 @@ const Carousel = ({ data, renderItem }) => {
         ))}
       </Swiper>
 
-      {/* Custom Navigation Buttons */}
+      {/* Navigation buttons positioned on the sides */}
       <button
         ref={prevRef}
         className={styles.navButton}
