@@ -4,8 +4,9 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import styles from './Carousel.module.css';
+import Card from '../Card/Card';
 
-const Carousel = ({ data, renderItem }) => {
+const Carousel = ({ data, type }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -44,7 +45,7 @@ const Carousel = ({ data, renderItem }) => {
       >
         {data.map((item) => (
           <SwiperSlide key={item.id}>
-            {renderItem(item)}
+            <Card data={item} type={type} />
           </SwiperSlide>
         ))}
       </Swiper>
