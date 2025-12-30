@@ -1,30 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
+import SongCard from '../Card/SongCard';
+import Carousel from '../Carousel/Carousel';
 import styles from './Section.module.css';
 
-const Section = ({ title, apiEndpoint }) => {
-  const [albums, setAlbums] = useState([]);
+const Section = ({ title, apiEndpoint, type = 'albums' }) => {
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [collapsed, setCollapsed] = useState(false); // Changed to false - show cards by default
+  const [showCarousel, setShowCarousel] = useState(true); // true = show carousel initially
 
   useEffect(() => {
-    fetchAlbums();
+    fetchData();
   }, []);
 
-  const fetchAlbums = async () => {
+  const fetchData = async () => {
     try {
       const response = await fetch(apiEndpoint);
-      const data = await response.json();
-      setAlbums(data);
+      const result = await response.json();
+      setData(result);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching albums:', error);
+      console.error('Error fetching data:', error);
       setLoading(false);
     }
   };
 
-  const toggleCollapse = () => {
-    setCollapsed(!collapsed);
+  const toggleView = () => {
+    setShowCarousel(!showCarousel);
+  };
+
+  // Function to render the appropriate card type
+  const renderCard = (item) => {
+    if (type === 'songs') {
+      return (
+        <SongCard
+          image={item.image}
+          likes={item.likes}
+          title={item.title}
+        />
+      );
+    }
+    return (
+      <Card
+        image={item.image}
+        follows={item.follows}
+        title={item.title}
+      />
+    );
   };
 
   if (loading) {
@@ -37,23 +59,24 @@ const Section = ({ title, apiEndpoint }) => {
       <div className={styles.header}>
         <h2 className={styles.title}>{title}</h2>
         <button
-          onClick={toggleCollapse}
+          onClick={toggleView}
           className={styles.collapseButton}
         >
-          {collapsed ? 'Show all' : 'Collapse'}
+          {showCarousel ? 'Show all' : 'Collapse'}
         </button>
       </div>
 
-      {/* Grid of Cards */}
-      {!collapsed && (
+      {/* Conditional Rendering: Grid OR Carousel */}
+      {showCarousel ? (
+        // Show Carousel
+        <Carousel data={data} renderItem={renderCard} />
+      ) : (
+        // Show Grid
         <div className={styles.grid}>
-          {albums.map((album) => (
-            <Card
-              key={album.id}
-              image={album.image}
-              follows={album.follows}
-              title={album.title}
-            />
+          {data.map((item) => (
+            <div key={item.id}>
+              {renderCard(item)}
+            </div>
           ))}
         </div>
       )}
