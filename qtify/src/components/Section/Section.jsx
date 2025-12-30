@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
-import SongCard from '../Card/SongCard';
 import Carousel from '../Carousel/Carousel';
 import styles from './Section.module.css';
 
@@ -31,15 +30,6 @@ const Section = ({ title, apiEndpoint, type = 'albums' }) => {
 
   // Function to render the appropriate card type
   const renderCard = (item) => {
-    if (type === 'songs') {
-      return (
-        <SongCard
-          image={item.image}
-          likes={item.likes}
-          title={item.title}
-        />
-      );
-    }
     return (
       <Card
         image={item.image}
