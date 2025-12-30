@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Navbar from './components/Navbar/Navbar';
+import Hero from './components/Hero/Hero';
 import Section from './components/Section/Section';
 import './App.css';
 
@@ -31,7 +33,6 @@ function App() {
     fetch('https://qtify-backend.labs.crio.do/genres')
       .then(res => res.json())
       .then(data => {
-        // Transform genres data to match expected format
         const transformedGenres = data.data.map(genre => ({
           key: genre.key,
           label: genre.label
@@ -43,7 +44,8 @@ function App() {
 
   return (
     <div className="App">
-      {/* Your Navbar and Hero components here */}
+      <Navbar />
+      <Hero />
 
       {/* Top Albums Section */}
       <Section
